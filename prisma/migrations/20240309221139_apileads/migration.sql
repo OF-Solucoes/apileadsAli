@@ -12,8 +12,8 @@ CREATE TABLE "Usuario" (
 CREATE TABLE "Cliente" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "empresa" VARCHAR(100) NOT NULL,
-    "name" VARCHAR(100) NOT NULL,
-    "ativa" BOOLEAN NOT NULL,
+    "cnpj" INTEGER NOT NULL,
+    "ativo" BOOLEAN NOT NULL,
     "dtCriacao" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Cliente_pkey" PRIMARY KEY ("id")
@@ -46,6 +46,9 @@ CREATE TABLE "Lead" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Usuario_email_key" ON "Usuario"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Cliente_cnpj_key" ON "Cliente"("cnpj");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Lead_contato_key" ON "Lead"("contato");
