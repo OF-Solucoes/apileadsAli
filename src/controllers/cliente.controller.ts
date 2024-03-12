@@ -49,8 +49,8 @@ const listarClienteController = async (req: Request, res: Response) => {
 
 const excluirClienteController = async (req: Request, res: Response) => {
   try {
-    const { idEst } = req.params;
-    const est = await excluirClienteService(idEst);
+    const { idCliente } = req.params;
+    const est = await excluirClienteService(idCliente);
     return res.status(200).json(est);
   } catch (error) {
     if (error instanceof Error) {

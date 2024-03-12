@@ -1,5 +1,5 @@
 export interface leadRequest {
-  contato: string;
+  tel: string;
   nome: string;
   email: string;
   obs: string;
@@ -7,7 +7,7 @@ export interface leadRequest {
 }
 
 export interface leadUpdate {
-  contato?: string;
+  tel?: string;
   nome?: string;
   email?: string;
   obs?: string;

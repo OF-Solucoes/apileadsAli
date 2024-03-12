@@ -13,7 +13,7 @@ const criarClienteService = async (data: clienteRequest) => {
 
   const { empresa, cnpj, ativo } = estSerializer;
 
-  const clienteExiste = await prisma.cliente.findFirst({
+  const clienteExiste = await prisma.cliente.findUnique({
     where: { cnpj: cnpj },
   });
 

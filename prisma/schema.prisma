@@ -17,7 +17,7 @@ model Usuario {
 model Cliente {
     id        String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
     empresa   String     @db.VarChar(100)
-    cnpj      Int        @unique @db.Integer
+    cnpj      String     @unique @db.VarChar(20)
     ativo     Boolean
     dtCriacao DateTime   @default(now())
     campanhas Campanha[]
@@ -26,9 +26,9 @@ model Cliente {
 model Campanha {
     id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
     criacao   DateTime @default(now())
-    Descricao String   @db.VarChar(100)
+    descricao String   @unique @db.VarChar(100)
     ativa     Boolean
-    Obs       String   @db.VarChar(300)
+    observ    String   @db.VarChar(300)
     cliente   Cliente  @relation(fields: [clienteid], references: [id], onDelete: Restrict)
     clienteid String   @db.Uuid
     leads     Lead[]
@@ -36,11 +36,11 @@ model Campanha {
 
 model Lead {
     id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-    contato    String   @unique @db.VarChar(20)
+    tel        String   @unique @db.VarChar(20)
     nome       String   @db.VarChar(100)
     email      String   @db.VarChar(100)
     envCliente Boolean
-    Obs        String   @db.VarChar(300)
+    observ     String   @db.VarChar(300)
     campanha   Campanha @relation(fields: [campanhaid], references: [id], onDelete: Restrict)
     campanhaid String   @db.Uuid
 }

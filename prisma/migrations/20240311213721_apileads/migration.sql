@@ -12,7 +12,7 @@ CREATE TABLE "Usuario" (
 CREATE TABLE "Cliente" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "empresa" VARCHAR(100) NOT NULL,
-    "cnpj" INTEGER NOT NULL,
+    "cnpj" VARCHAR(20) NOT NULL,
     "ativo" BOOLEAN NOT NULL,
     "dtCriacao" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -23,9 +23,9 @@ CREATE TABLE "Cliente" (
 CREATE TABLE "Campanha" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "criacao" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "Descricao" VARCHAR(100) NOT NULL,
+    "descricao" VARCHAR(100) NOT NULL,
     "ativa" BOOLEAN NOT NULL,
-    "Obs" VARCHAR(300) NOT NULL,
+    "observ" VARCHAR(300) NOT NULL,
     "clienteid" UUID NOT NULL,
 
     CONSTRAINT "Campanha_pkey" PRIMARY KEY ("id")
@@ -34,11 +34,11 @@ CREATE TABLE "Campanha" (
 -- CreateTable
 CREATE TABLE "Lead" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
-    "contato" VARCHAR(20) NOT NULL,
+    "tel" VARCHAR(20) NOT NULL,
     "nome" VARCHAR(100) NOT NULL,
     "email" VARCHAR(100) NOT NULL,
     "envCliente" BOOLEAN NOT NULL,
-    "Obs" VARCHAR(300) NOT NULL,
+    "observ" VARCHAR(300) NOT NULL,
     "campanhaid" UUID NOT NULL,
 
     CONSTRAINT "Lead_pkey" PRIMARY KEY ("id")
@@ -51,7 +51,10 @@ CREATE UNIQUE INDEX "Usuario_email_key" ON "Usuario"("email");
 CREATE UNIQUE INDEX "Cliente_cnpj_key" ON "Cliente"("cnpj");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Lead_contato_key" ON "Lead"("contato");
+CREATE UNIQUE INDEX "Campanha_descricao_key" ON "Campanha"("descricao");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Lead_tel_key" ON "Lead"("tel");
 
 -- AddForeignKey
 ALTER TABLE "Campanha" ADD CONSTRAINT "Campanha_clienteid_fkey" FOREIGN KEY ("clienteid") REFERENCES "Cliente"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
