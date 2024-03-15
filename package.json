@@ -7,8 +7,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --ignore-watch=node_modules --rs --cls --transpile-only src/app.ts",
-    "start": "node index.js",
-    "build": "tsc --outDir build && node copyFile.js && prisma generate"
+    "build": "tsc --outDir build && node copyFile.js && prisma generate",
+    "start": "node build/index.js"
   },
   "dependencies": {
     "@prisma/client": "^5.10.2",
