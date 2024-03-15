@@ -3,19 +3,10 @@ import { leadUpdate } from "../../interfaces/lead";
 
 const prisma = new PrismaClient();
 
-const alterarLeadService = async (data: leadUpdate, idCliente: string) => {
+const alterarLeadService = async (data: leadUpdate, idLead: number) => {
   const leadAlterar = prisma.lead.update({
-    where: { id: idCliente },
+    where: { id: idLead },
     data: data,
-    // include: {
-    //   campanha: {
-    //     select: {
-    //       descricao: true,
-    //       ativa: true,
-    //       cliente: true,
-    //     },
-    //   },
-    // },
   });
 
   return leadAlterar;

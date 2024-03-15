@@ -22,7 +22,7 @@ const criarClienteController = async (req: Request, res: Response) => {
 const alterarClienteController = async (req: Request, res: Response) => {
   try {
     const data = req.body;
-    const { idCliente } = req.params;
+    const idCliente = parseInt(req.params.idCliente, 10);
     const clienteAlterado = await alterarClienteService(data, idCliente);
     return res.status(200).json(clienteAlterado);
   } catch (error) {
@@ -49,7 +49,7 @@ const listarClienteController = async (req: Request, res: Response) => {
 
 const excluirClienteController = async (req: Request, res: Response) => {
   try {
-    const { idCliente } = req.params;
+    const idCliente = parseInt(req.params.idCliente, 10);
     const est = await excluirClienteService(idCliente);
     return res.status(200).json(est);
   } catch (error) {

@@ -18,7 +18,7 @@ const loginService = async ({ email, senha }: loginRequest) => {
   if (!validarSenha) {
     throw createError.Unauthorized("Usuário ou senha inválida");
   }
-
+  console.log(usuario);
   const accessToken = jwt.sign(
     {
       id: usuario.id,
@@ -26,7 +26,7 @@ const loginService = async ({ email, senha }: loginRequest) => {
     process.env.SECRET_KEY as string,
     {
       expiresIn: "15h",
-      subject: usuario.id,
+      subject: usuario.id.toString(),
     }
   );
 

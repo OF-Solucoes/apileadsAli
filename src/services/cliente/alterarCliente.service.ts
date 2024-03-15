@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 const alterarClienteService = async (
   data: clienteUpdate,
-  idCliente: string
+  idCliente: number
 ) => {
   const clienteAlterar = prisma.cliente.update({
     where: { id: idCliente },

@@ -5,7 +5,7 @@ import { leadSerializer } from "../../serializers/lead.serializer";
 
 const prisma = new PrismaClient();
 
-const criarLeadService = async (data: leadRequest, idCampanha: string) => {
+const criarLeadService = async (data: leadRequest, idCampanha: number) => {
   const leadsSerializer = await leadSerializer.validate(data, {
     stripUnknown: true,
     abortEarly: false,

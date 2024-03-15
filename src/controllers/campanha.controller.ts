@@ -7,7 +7,7 @@ import listarCampanhaService from "../services/campanha/listarCampanha";
 const criarCampanhaController = async (req: Request, res: Response) => {
   try {
     const { ...dataCamp } = req.body;
-    const { idCliente } = req.params;
+    const idCliente = parseInt(req.params.idCliente, 10);
 
     const newCamp = await criarCampanhaService(dataCamp, idCliente);
     return res.status(201).json(newCamp);
@@ -23,7 +23,7 @@ const criarCampanhaController = async (req: Request, res: Response) => {
 const alterarCampanhaController = async (req: Request, res: Response) => {
   try {
     const data = req.body;
-    const { idCamp } = req.params;
+    const idCamp = parseInt(req.params.idCamp, 10);
     const campAlterado = await alterarCampanhaService(data, idCamp);
     return res.status(200).json(campAlterado);
   } catch (error) {
@@ -50,7 +50,7 @@ const listarCampanhasController = async (req: Request, res: Response) => {
 
 const excluirCampanhaController = async (req: Request, res: Response) => {
   try {
-    const { idCamp } = req.params;
+    const idCamp = parseInt(req.params.idCamp, 10);
     const est = await excluirCampanhaService(idCamp);
     return res.status(200).json(est);
   } catch (error) {

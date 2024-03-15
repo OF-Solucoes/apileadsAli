@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 
 const criarCampanhaService = async (
   data: campanhaRequest,
-  idCleinte: string
+  idCleinte: number
 ) => {
   const campSerializer = await campanhaSerializer.validate(data, {
     stripUnknown: true,
@@ -18,7 +18,7 @@ const criarCampanhaService = async (
   const { descricao, observ, ativa } = campSerializer;
 
   const campExiste = await prisma.campanha.findFirst({
-    where: { descricao: descricao, clienteid: idCleinte },
+    where: { descricao: descricao },
   });
 
   if (campExiste) {

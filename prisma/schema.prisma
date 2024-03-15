@@ -3,19 +3,19 @@ generator client {
 }
 
 datasource db {
-    provider = "postgresql"
+    provider = "mysql"
     url      = env("DATABASE_URL")
 }
 
 model Usuario {
-    id    String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+    id    Int    @id @default(autoincrement()) // @default(dbgenerated("gen_random_uuid()")) @db.Uuid
     name  String @db.VarChar(100)
     email String @unique
     senha String
 }
 
 model Cliente {
-    id        String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+    id        Int        @id @default(autoincrement()) //@id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
     empresa   String     @db.VarChar(100)
     cnpj      String     @unique @db.VarChar(20)
     ativo     Boolean
@@ -24,23 +24,23 @@ model Cliente {
 }
 
 model Campanha {
-    id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+    id        Int      @id @default(autoincrement()) //@id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
     criacao   DateTime @default(now())
     descricao String   @unique @db.VarChar(100)
     ativa     Boolean
     observ    String   @db.VarChar(300)
     cliente   Cliente  @relation(fields: [clienteid], references: [id], onDelete: Restrict)
-    clienteid String   @db.Uuid
+    clienteid Int //@db.Uuid
     leads     Lead[]
 }
 
 model Lead {
-    id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+    id         Int      @id @default(autoincrement()) //@id @default(dbgenerated("gen_random_uuid()"))@db.Uuid
     tel        String   @unique @db.VarChar(20)
     nome       String   @db.VarChar(100)
     email      String   @db.VarChar(100)
     envCliente Boolean
     observ     String   @db.VarChar(300)
     campanha   Campanha @relation(fields: [campanhaid], references: [id], onDelete: Restrict)
-    campanhaid String   @db.Uuid
+    campanhaid Int //@db.Uuid
 }
