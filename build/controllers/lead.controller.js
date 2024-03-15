@@ -32,7 +32,7 @@ const retornarLead_service_1 = __importDefault(require("../services/lead/retorna
 const criarLeadController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const data = __rest(req.body, []);
-        const { idCamp } = req.params;
+        const idCamp = parseInt(req.params.idCamp, 10);
         const newLead = yield (0, criarLead_service_1.default)(data, idCamp);
         return res.status(201).json(newLead);
     }
@@ -48,7 +48,7 @@ exports.criarLeadController = criarLeadController;
 const alterarLeadController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const data = req.body;
-        const { idLead } = req.params;
+        const idLead = parseInt(req.params.idLead, 10);
         const leadAlterado = yield (0, alterarLead_service_1.default)(data, idLead);
         return res.status(200).json(leadAlterado);
     }
@@ -92,7 +92,7 @@ const retornaLeadController = (req, res) => __awaiter(void 0, void 0, void 0, fu
 exports.retornaLeadController = retornaLeadController;
 const excluirLeadController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { idLead } = req.params;
+        const idLead = parseInt(req.params.idLead, 10);
         const lead = yield (0, excluirLead_service_1.default)(idLead);
         return res.status(200).json(lead);
     }

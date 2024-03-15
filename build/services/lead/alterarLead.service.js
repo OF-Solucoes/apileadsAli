@@ -11,9 +11,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
-const alterarLeadService = (data, idCliente) => __awaiter(void 0, void 0, void 0, function* () {
+const alterarLeadService = (data, idLead) => __awaiter(void 0, void 0, void 0, function* () {
     const leadAlterar = prisma.lead.update({
-        where: { id: idCliente },
+        where: { id: idLead },
         data: data,
     });
     return leadAlterar;

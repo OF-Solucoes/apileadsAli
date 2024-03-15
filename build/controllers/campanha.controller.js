@@ -31,7 +31,7 @@ const listarCampanha_1 = __importDefault(require("../services/campanha/listarCam
 const criarCampanhaController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const dataCamp = __rest(req.body, []);
-        const { idCliente } = req.params;
+        const idCliente = parseInt(req.params.idCliente, 10);
         const newCamp = yield (0, criarCampanha_service_1.default)(dataCamp, idCliente);
         return res.status(201).json(newCamp);
     }
@@ -47,7 +47,7 @@ exports.criarCampanhaController = criarCampanhaController;
 const alterarCampanhaController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const data = req.body;
-        const { idCamp } = req.params;
+        const idCamp = parseInt(req.params.idCamp, 10);
         const campAlterado = yield (0, alterarCampanha_service_1.default)(data, idCamp);
         return res.status(200).json(campAlterado);
     }
@@ -76,7 +76,7 @@ const listarCampanhasController = (req, res) => __awaiter(void 0, void 0, void 0
 exports.listarCampanhasController = listarCampanhasController;
 const excluirCampanhaController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { idCamp } = req.params;
+        const idCamp = parseInt(req.params.idCamp, 10);
         const est = yield (0, excluirCampanha_1.default)(idCamp);
         return res.status(200).json(est);
     }

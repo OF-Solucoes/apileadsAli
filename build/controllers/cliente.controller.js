@@ -46,7 +46,7 @@ exports.criarClienteController = criarClienteController;
 const alterarClienteController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const data = req.body;
-        const { idCliente } = req.params;
+        const idCliente = parseInt(req.params.idCliente, 10);
         const clienteAlterado = yield (0, alterarCliente_service_1.default)(data, idCliente);
         return res.status(200).json(clienteAlterado);
     }
@@ -75,7 +75,7 @@ const listarClienteController = (req, res) => __awaiter(void 0, void 0, void 0, 
 exports.listarClienteController = listarClienteController;
 const excluirClienteController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { idCliente } = req.params;
+        const idCliente = parseInt(req.params.idCliente, 10);
         const est = yield (0, excluirCliente_service_1.default)(idCliente);
         return res.status(200).json(est);
     }

@@ -23,7 +23,7 @@ const criarCampanhaService = (data, idCleinte) => __awaiter(void 0, void 0, void
     });
     const { descricao, observ, ativa } = campSerializer;
     const campExiste = yield prisma.campanha.findFirst({
-        where: { descricao: descricao, clienteid: idCleinte },
+        where: { descricao: descricao },
     });
     if (campExiste) {
         throw http_errors_1.default.BadRequest("Campanha já existe!");

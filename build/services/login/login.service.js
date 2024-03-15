@@ -28,11 +28,12 @@ const loginService = (_a) => __awaiter(void 0, [_a], void 0, function* ({ email,
     if (!validarSenha) {
         throw http_errors_1.default.Unauthorized("Usuário ou senha inválida");
     }
+    console.log(usuario);
     const accessToken = jsonwebtoken_1.default.sign({
         id: usuario.id,
     }, process.env.SECRET_KEY, {
         expiresIn: "15h",
-        subject: usuario.id,
+        subject: usuario.id.toString(),
     });
     const { id, name } = usuario;
     return {
