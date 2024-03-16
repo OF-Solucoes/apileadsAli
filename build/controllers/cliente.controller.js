@@ -1,24 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -28,10 +8,10 @@ const criarCliente_service_1 = __importDefault(require("../services/cliente/cria
 const alterarCliente_service_1 = __importDefault(require("../services/cliente/alterarCliente.service"));
 const listarCliente_service_1 = __importDefault(require("../services/cliente/listarCliente.service"));
 const excluirCliente_service_1 = __importDefault(require("../services/cliente/excluirCliente.service"));
-const criarClienteController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const criarClienteController = async (req, res) => {
     try {
-        const dataCleinte = __rest(req.body, []);
-        const newCliente = yield (0, criarCliente_service_1.default)(dataCleinte);
+        const { ...dataCleinte } = req.body;
+        const newCliente = await (0, criarCliente_service_1.default)(dataCleinte);
         return res.status(201).json(newCliente);
     }
     catch (error) {
@@ -41,13 +21,13 @@ const criarClienteController = (req, res) => __awaiter(void 0, void 0, void 0, f
             });
         }
     }
-});
+};
 exports.criarClienteController = criarClienteController;
-const alterarClienteController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const alterarClienteController = async (req, res) => {
     try {
         const data = req.body;
         const idCliente = parseInt(req.params.idCliente, 10);
-        const clienteAlterado = yield (0, alterarCliente_service_1.default)(data, idCliente);
+        const clienteAlterado = await (0, alterarCliente_service_1.default)(data, idCliente);
         return res.status(200).json(clienteAlterado);
     }
     catch (error) {
@@ -57,11 +37,11 @@ const alterarClienteController = (req, res) => __awaiter(void 0, void 0, void 0,
             });
         }
     }
-});
+};
 exports.alterarClienteController = alterarClienteController;
-const listarClienteController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const listarClienteController = async (req, res) => {
     try {
-        const clientes = yield (0, listarCliente_service_1.default)();
+        const clientes = await (0, listarCliente_service_1.default)();
         return res.status(200).json(clientes);
     }
     catch (error) {
@@ -71,12 +51,12 @@ const listarClienteController = (req, res) => __awaiter(void 0, void 0, void 0, 
             });
         }
     }
-});
+};
 exports.listarClienteController = listarClienteController;
-const excluirClienteController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const excluirClienteController = async (req, res) => {
     try {
         const idCliente = parseInt(req.params.idCliente, 10);
-        const est = yield (0, excluirCliente_service_1.default)(idCliente);
+        const est = await (0, excluirCliente_service_1.default)(idCliente);
         return res.status(200).json(est);
     }
     catch (error) {
@@ -86,5 +66,5 @@ const excluirClienteController = (req, res) => __awaiter(void 0, void 0, void 0,
             });
         }
     }
-});
+};
 exports.excluirClienteController = excluirClienteController;

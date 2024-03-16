@@ -2,7 +2,9 @@
   "name": "apileadsAli",
   "version": "1.0.0",
   "main": "index.js",
-  
+  "engines": {
+    "node": "18"
+  },
   "repository": "git@github.com:OF-Solucoes/apileadsAli.git",
   "author": "ElyMuniz <elymuzz@hotmail.com>",
   "license": "MIT",
