@@ -2,16 +2,13 @@
   "name": "apileadsAli",
   "version": "1.0.0",
   "main": "index.js",
-  "engines": {
-    "node": "18"
-  },
   "repository": "git@github.com:OF-Solucoes/apileadsAli.git",
   "author": "ElyMuniz <elymuzz@hotmail.com>",
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --ignore-watch=node_modules --rs --cls --transpile-only src/app.ts",
-    "build": "tsc --outDir build && node copyFile.js && prisma generate",
-    "start": "node build/index.js"
+    "build": "tsc --outDir build && prisma generate",
+    "start": "node build/app.js"
   },
   "dependencies": {
     "@prisma/client": "^5.10.2",
