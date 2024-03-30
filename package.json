@@ -6,10 +6,9 @@
   "author": "ElyMuniz <elymuzz@hotmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js",
-    "preinstall": "npm install -g prisma",
-    "setup": "prisma generate",
-    "build": "npm run setup" 
+    "dev": "ts-node-dev --ignore-watch=node_modules --rs --cls --transpile-only src/app.ts",
+    "build": "prisma generate", 
+    "start": "node dist/index.js"
   },
   "dependencies": {
     "@prisma/client": "^5.10.2",
